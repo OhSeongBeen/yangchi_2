@@ -1,0 +1,1 @@
+web: gunicorn yangchi.wsgi --log-file -
