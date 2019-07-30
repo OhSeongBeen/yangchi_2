@@ -32,11 +32,14 @@
   <body>
 
     <!-- MENU -->
-    <nav class="navbar navbar-expand-sm navbar-light">
+    <!-- <nav class="navbar navbar-expand-sm navbar-light"> -->
         <div class="container">
-            <a class="navbar-brand" href="main.html"><i class='uil uil-user'></i> 양치</a>
+            <nav class="navbar navbar-expand-sm navbar-light">
+                <a class="navbar-brand" href="{% url 'main' %}">
+                  <img src='{% static "patient/images/nav-logo.png" %}' alt="mainpage image" class="d-inline-block align-top" width="30" height="30"> 양치
+                </a>
 
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
                 <span class="navbar-toggler-icon"></span>
@@ -45,18 +48,54 @@
 
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mx-auto">
+                    {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a href="#about" class="nav-link">주변 치과 찾기</span></a>
+                      <a href="#" class="nav-link"><span data-hover="환영합니다. {{user.username}} 님!"> 환영합니다. {{user.username}} 님!</span></a> 
                     </li>
                     <li class="nav-item">
-                        <a href="#resume" class="nav-link"><!--<span data-hover="Resume">-->마이페이지</span></a>
+                        <a href="#about" class="nav-link"><span data-hover="주변 치과 찾기">주변 치과 찾기</span></a>
                     </li>
+                    <li class="nav-item">
+                        <a href="#resume" class="nav-link"><span data-hover="마이페이지">마이페이지</span></a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="javascript:{document.getElementById('logout').submit()}"><span data-hover="로그아웃">로그아웃</span> </a>
+                      <form id="logout" method="POST" action="{% url 'logout' %}">
+                          {% csrf_token %} <input type="hidden" />
+                      </form>
+                    </li>
+                    <!-- <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">환영합니다. {{ user.username }} 님!</a>
+                        
+                            
+                    </li> -->
+                    {% else %}
+                    <!-- <li class="nav-item">
+                        <a class="nav-item nav-link" href="{% url 'signup' %}">Signup</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
+                    </li> -->
                     <li class="nav-item" id="login">
-                        <a href="#contact" class="nav-link">로그인</span></a>
+                        <a href="{% url 'login' %}" class="nav-link"><span data-hover="로그인">로그인</span></a>
                     </li>
                     <li class="nav-item" id="join">
-                      <a href="#contact" class="nav-link">회원가입</span></a>
-                  </li>
+                      <a href="{% url 'signup' %}" class="nav-link"><span data-hover="회원가입">회원가입</span></a>
+                    </li>
+                    {% endif %}
+                    <!-- <li class="nav-item">
+                        <a href="#about" class="nav-link"><span data-hover="주변 치과 찾기">주변 치과 찾기</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#resume" class="nav-link"><span data-hover="마이페이지">마이페이지</span></a>
+                    </li> -->
+                    <!-- <li class="nav-item" id="login">
+                        <a href="{% url 'login' %}" class="nav-link"><span data-hover="로그인">로그인</span></a>
+                    </li>
+                    <li class="nav-item" id="join">
+                      <a href="{% url 'signup' %}" class="nav-link"><span data-hover="회원가입">회원가입</span></a>
+                    </li> -->
                 </ul>
 
                 <ul class="navbar-nav ml-lg-auto">
@@ -68,14 +107,18 @@
                     </div>
                 </ul>
             </div>
+          </nav>
         </div>
-    </nav>
-
+    <!-- </nav> -->
+<br>
+<br>
+<br>
+<br>
     <!-- main image -->
     <section id="about">
-        <div class="container">
-          <h1>로고 박힌 사진 넣기</h1>
-          <img src='{% static "patient/images/project-image03.png" %}' alt="mainpage image" style="padding : 4rem 0;" width="100%" heigh="30%" id="main_image.">
+        <div class="container, d-flex justify-content-around row">
+          
+          <img src='{% static "patient/images/main_image.png" %}' alt="mainpage image" width="30%" height="10%" id="main_image.">
         </div>
     </section>
 
@@ -123,7 +166,7 @@
 
                       <div class="owl-carousel owl-theme ">
                         
-                        <div class="project-info, d-flex justify-content-around row ">
+                        <div class="project-info, d-flex justify-content-around row">
                           <div class="col-lg-4">
                             <div class="card">
                               <img src='{% static "patient/images/project/promotion1.jpg" %}' class="card-img-top" alt="project image">

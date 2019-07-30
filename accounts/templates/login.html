@@ -1,0 +1,162 @@
+{% load staticfiles %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <style>
+      @font-face 
+    { 
+      font-family: 'yg-jalnan'; 
+      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff'); 
+      font-weight: normal; font-style: normal; 
+    } 
+    </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Yang Chi</title>
+
+    <link rel="stylesheet" href='{% static "patient/sass/tooplate-style.scss" %}'>
+  
+    <link rel="stylesheet" href='{% static "patient/css/bootstrap.min.css" %}'>
+    <link rel="stylesheet" href='{% static "patient/css/unicons.css" %}'>
+    <link rel="stylesheet" href='{% static "patient/css/owl.carousel.min.css" %}'>
+    <link rel="stylesheet" href='{% static "patient/css/owl.theme.default.min.css" %}'>
+    <link rel="stylesheet" href='{% static "patient/css/main-additional.css" %}'>
+
+    <!-- MAIN STYLE -->
+    <link rel="stylesheet" href='{% static "patient/css/tooplate-style.css" %}'>
+    
+  </head>
+  <body>
+
+    <!-- MENU -->
+    <!-- <nav class="navbar navbar-expand-sm navbar-light"> -->
+            <div class="container">
+                    <nav class="navbar navbar-expand-sm navbar-light">
+                        <a class="navbar-brand" href="{% url 'main' %}">
+                          <img src='{% static "patient/images/nav-logo.png" %}' alt="mainpage image" class="d-inline-block align-top" width="30" height="30"> 양치
+                        </a>
+        
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                        <span class="navbar-toggler-icon"></span>
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+        
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav mx-auto">
+                            {% if user.is_authenticated %}
+                            <li class="nav-item">
+                              <a href="#" class="nav-link"><span data-hover="환영합니다. {{user.username}} 님!"> 환영합니다. {{user.username}} 님!</span></a> 
+                            </li>
+                            <li class="nav-item">
+                                <a href="#about" class="nav-link"><span data-hover="주변 치과 찾기">주변 치과 찾기</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#resume" class="nav-link"><span data-hover="마이페이지">마이페이지</span></a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link" href="javascript:{document.getElementById('logout').submit()}"><span data-hover="로그아웃">로그아웃</span> </a>
+                              <form id="logout" method="POST" action="{% url 'logout' %}">
+                                  {% csrf_token %} <input type="hidden" />
+                              </form>
+                            </li>
+                            <!-- <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">환영합니다. {{ user.username }} 님!</a>
+                                
+                                    
+                            </li> -->
+                            {% else %}
+                            <li class="nav-item" id="login">
+                                <a href="{% url 'login' %}" class="nav-link"><span data-hover="로그인">로그인</span></a>
+                            </li>
+                            <li class="nav-item" id="join">
+                              <a href="{% url 'signup' %}" class="nav-link"><span data-hover="회원가입">회원가입</span></a>
+                            </li>
+                            {% endif %}
+                            <!-- <li class="nav-item">
+                                <a href="#about" class="nav-link"><span data-hover="주변 치과 찾기">주변 치과 찾기</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#resume" class="nav-link"><span data-hover="마이페이지">마이페이지</span></a>
+                            </li> -->
+                            <!-- <li class="nav-item" id="login">
+                                <a href="{% url 'login' %}" class="nav-link"><span data-hover="로그인">로그인</span></a>
+                            </li>
+                            <li class="nav-item" id="join">
+                              <a href="{% url 'signup' %}" class="nav-link"><span data-hover="회원가입">회원가입</span></a>
+                            </li> -->
+                        </ul>
+        
+                        <ul class="navbar-nav ml-lg-auto">
+                            <div class="ml-lg-4">
+                              <div class="color-mode d-lg-flex justify-content-center align-items-center">
+                                <i class="color-mode-icon"></i>
+                                의사 사이트로 이동
+                              </div>
+                            </div>
+                        </ul>
+                    </div>
+                  </nav>
+                </div>
+            <!-- </nav> -->
+<br>
+<br>
+<br>
+<br>
+    <section id="login-section">
+        <div class="container">
+            <h1>Login</h1>
+            <div class="contact-form">
+
+                <form method="POST" action="{% url 'login' %}" abineguid="3D2A22DA4ABB40BCA37BCCBE863623C5">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-lg-12 col-12">
+                            Username
+                            <input name="username" type="text" class="form-control" placeholder="Your Name" id="name">
+                        </div>
+
+                        <div class="col-lg-12 col-12">
+                            Password
+                            <input name="password" type="password" value="" class="form-control" name="email" placeholder="password" id="email">
+                        </div>
+
+                        <div class="ml-lg-auto col-lg-5 col-12">
+                                <input type="submit" class="form-control submit-btn" value="Login">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+     <footer class="footer py-5" style="background: #F2F2F2">
+          <div class="container" >
+               <div class="row">
+
+                    <div class="col-lg-12 col-12">                                
+                        <p class="copyright-text text-center">Copyright &copy; 2019 Company Name . All rights reserved</p>
+                        <p class="copyright-text text-center">Designed by <a rel="nofollow" href="https://www.facebook.com/tooplate">Tooplate</a></p>
+                    </div>
+                    
+               </div>
+          </div>
+     </footer>
+
+    <script src='{% static "patient/js/jquery-3.3.1.min.js" %}'></script>
+    <script src='{% static "patient/js/popper.min.js" %}'></script>
+    <script src='{% static "patient/js/bootstrap.min.js" %}'></script>
+    <script src='{% static "patient/js/Headroom.js" %}'></script>
+    <script src='{% static "patient/js/jQuery.headroom.js" %}'></script>
+    <script src='{% static "patient/js/owl.carousel.min.js" %}'></script>
+    <script src='{% static "patient/js/smoothscroll.js" %}'></script>
+    <script src='{% static "patient/js/custom.js" %}'></script>
+
+  </body>
+</html>
